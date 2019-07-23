@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html>
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
@@ -9,12 +10,11 @@
 <script>
     $(document).ready(function(){
         $("#livebox").on("input",function(e){
-            textinlivebox = $("#livebox").val();
             $("#datalist").empty();
             $.ajax({
                 method:"post",
                 url:"/livesearch",
-                data:{text:textinlivebox},
+                data:{text:$("#livebox").val()},
                 success:function(res){
                     var data = "<ul>";
                     $.each(res,function(index,value){
@@ -23,8 +23,8 @@
                     data += "</ul>";
                     $("#datalist").html(data);
                 }
-            })
+            });
         });
-    })
+    });
 </script>
 </html>
