@@ -1,24 +1,28 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
+
 <body>
-    <input type="text" id = "livebox">
-    <p id = "datalist"></p>
+    <input type="text" id="livebox">
+    <p id="datalist"></p>
 </body>
 <script>
-    $(document).ready(function(){
-        $("#livebox").on("input",function(e){
+    $(document).ready(function() {
+        $("#livebox").on("input", function(e) {
             $("#datalist").empty();
             $.ajax({
-                method:"post",
-                url:"/livesearch",
-                data:{text:$("#livebox").val()},
-                success:function(res){
+                method: "POST",
+                url: "/livesearch",
+                data: {
+                    text: $("#livebox").val()
+                },
+                success: function(res) {
                     var data = "<ul>";
-                    $.each(res,function(index,value){
-                        data += "<li>"+value.word_eng+"</li>";
+                    $.each(res, function(index, value) {
+                        data += "<li>" + value.word_eng + "</li>";
                     });
                     data += "</ul>";
                     $("#datalist").html(data);
@@ -27,4 +31,5 @@
         });
     });
 </script>
+
 </html>
